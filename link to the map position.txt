@@ -1,0 +1,4 @@
+https://s3.amazonaws.com/metro-extracts.mapzen.com/nizhniy-novgorod_russia.osm.bz2
+
+Nizhniy Novgorod is large old Russian city placed at joining of two rivers - Volga and Oka. Its historical part is beatiful. While its also industrial center with more than 1 million population.
+I like Nizhniy Novgorod and very glad to work on its data.
