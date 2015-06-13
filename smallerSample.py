@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET  # Use cElementTree or lxml if too slow
 OSM_FILE = "data/nizhniy-novgorod_russia.osm"  # Replace this with your osm file
 SAMPLE_FILE = "data/nizhniy-novgorod_russia_sample.osm"
 
-
+# Getting element of required type for further processing
 def get_element(osm_file, tags=('node', 'way', 'relation')):
     """Yield element if it is the right type of tag
 
@@ -21,6 +21,8 @@ def get_element(osm_file, tags=('node', 'way', 'relation')):
             root.clear()
 
 
+# Main part of the code
+# Getting smaller sample of the whole dataset to another file
 with open(SAMPLE_FILE, 'wb') as output:
     output.write(bytes('<?xml version="1.0" encoding="UTF-8"?>\n', 'UTF-8'))
     output.write(bytes('<osm>\n  ', 'UTF-8'))

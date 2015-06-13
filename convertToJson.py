@@ -7,17 +7,21 @@ import re
 import codecs
 import json
 
+# Main code to convert osm file into json file for further import to MongoDB
 lower = re.compile(r'^([a-z]|_)*$')
 lower_colon = re.compile(r'^([a-z]|_)*:([a-z]|_)*$')
 problemchars = re.compile(r'[=\+/&<>;\'"\?%#$@\,\. \t\r\n]')
 
 CREATED = [ "version", "changeset", "timestamp", "user", "uid"]
+# Mapping of abbreviations to full words 
 mapping = { "ул.": "улица",
             "пер.": "переулок"
             }
+# Expected street kinds list
 expected = ["улица", "переулок", "бульвар", "проспект", "шоссе", "микрорайон", "слобода",
             "съезд", "проезд", "деревня", "посёлок", "набережная", "площадь"]
 
+# Convert osm element into json element and shaping it to meet required type
 def shape_element(element):
     node = {}
     if element.tag == "node" or element.tag == "way" :
@@ -63,6 +67,7 @@ def shape_element(element):
     else:
         return None
 
+# Processing map file
 def process_map(file_in, pretty = False):
     # You do not need to change this file
     file_out = "{0}.json".format(file_in)
@@ -78,6 +83,7 @@ def process_map(file_in, pretty = False):
                     fo.write(json.dumps(el) + "\n")
     return data
 
+# Update street name - substitute abbreviations, change words order if required
 def update_name(name):
     updated = False
     for k in mapping:
@@ -98,6 +104,7 @@ def update_name(name):
             name = type + " " + name.replace(" " + type, "")
     return name
 
+# Invocation of osm file processing
 data = process_map('data/nizhniy-novgorod_russia.osm', True)
 #process_map("data/nizhniy-novgorod_russia_sample.osm", True)
 #pprint.pprint(data)
