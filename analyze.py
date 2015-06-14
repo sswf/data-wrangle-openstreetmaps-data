@@ -17,7 +17,7 @@ def make_pipeline():
         {"$sort" : {"count" : -1}}]
     return pipeline
 
-# Main pert of the code: getting db, making pipeline, invokation of analysis,
+# Main part of the code: getting db, making pipeline, invokation of analysis,
 # and result output
 db = get_db('test')
 pipeline = make_pipeline()
